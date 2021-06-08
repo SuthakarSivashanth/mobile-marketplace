@@ -1,9 +1,82 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- <ion-header>
+    <ion-toolbar>
+        <ion-title>profile</ion-title>
+    </ion-toolbar>
+</ion-header> -->
 
 <ion-content>
+    <div *ngIf="default" class="userProfile">
+        <div *ngIf="myData$ |async as data" class="container cards-bg">
+            <img *ngIf="data.userAvatarUrl !== '' " class="userProfileIcon" [src]=" data.userAvatarUrl ">
+            <img *ngIf="data.userAvatarUrl === '' " class="userProfileIcon" [src]=" 'assets/userProfileIcon.png' ">
+            <!-- <img class="userProfileIcon" [src]="data.userAvatarUrl"> -->
+        </div>
+        <ion-card class="cards-bg">
+            <ion-card-title>
+                <h1 class="ion-text-center" color="secondary">My Details</h1>
+            </ion-card-title>
+            <ion-card-content>
+                <ul class="details">
+                    <li>
+                        <h3>Firstname:</h3>
+                        <h2 *ngIf="myData$ |async as data">{{data.firstname}}</h2>
+                    </li>
+                    <li>
+                        <h3>Lastname:</h3>
+                        <h2 *ngIf="myData$ |async as data">{{data.lastname}}</h2>
+                    </li>
+                    <li>
+                        <h3>Phonenumber:</h3>
+                        <h2 *ngIf="myData$ |async as data">{{data.phonenumber}}</h2>
+                    </li>
+                    <li>
+                        <h3>Email:</h3>
+                        <h2 *ngIf="myData$ |async as data">{{data.email}}</h2>
+                    </li>
+                </ul>
 
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+
+    <div *ngIf="!default" class="form" #editform>
+        <ion-button (click)="back()" fill="clear" class="backBtn">
+            <ion-icon slot="start" name="arrow-back-outline" color="dark"></ion-icon>
+        </ion-button>
+        <h2 class="ion-text-center header_lbl">Edit Profile</h2>
+        <form [formGroup]="editForm">
+            <ion-item lines="full">
+                <ion-label position="floating">Firstname:</ion-label>
+                <ion-input type="text" formControlName="firstname"></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label position="floating">Lastname:</ion-label>
+                <ion-input type="text" formControlName="lastname"></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label position="floating">Phonenumber:</ion-label>
+                <ion-input type="text" formControlName="phonenumber"></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label position="floating">Email:</ion-label>
+                <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item class="imgHolder" lines="full">
+                <ion-icon slot="start" name="image"></ion-icon>
+                <ion-label>Avator</ion-label>
+                <ion-input class="hidden" slot="end" type="file" accept="image/png, image/jpeg" (change)="uploadImage($event)"></ion-input>
+                <ion-button class="general_btn" slot="end" (click)="updateProfileImg()">Upload</ion-button>
+            </ion-item>
+            <ion-button class="general_btn" (click)="updateProfile(editForm.value)" shape="round">Update</ion-button>
+        </form>
+        <!-- <ion-button (click)="renderData()">Touch</ion-button>
+        <pre>{{id}}</pre> -->
+    </div>
+
+    <div *ngIf="default" class="footer">
+        <ion-button class="general_btn" (click)="editProfile()" shape="round">Edit</ion-button>
+        <ion-button class="general_btn" (click)="signOut()" shape="round">Sign out</ion-button>
+
+    </div>
 </ion-content>

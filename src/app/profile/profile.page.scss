@@ -1,0 +1,62 @@
+.footer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.userProfile {
+    .container {
+        border: 1px solid #dddddd;
+        border-radius: 50%;
+        height: 12.5rem;
+        width: 12.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin: auto;
+        margin-top: 15px;
+    }
+    .userProfileIcon {
+        vertical-align: middle;
+        width: 12.5rem;
+        height: 12.5rem;
+        border-radius: 50%;
+        margin: auto;
+    }
+    .details {
+        p,
+        h2,
+        h3 {
+            display: inline;
+        }
+        h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-left: 10px;
+            color: white;
+        }
+    }
+}
+
+.header_lbl {
+    font-size: 1.5rem;
+    color: var(--ion-color-secondary) !important;
+}
+
+.form {
+    text-align: center;
+    width: 100%;
+    .backBtn {
+        position: absolute;
+        top: 20px;
+        left: 0;
+    }
+}
+
+.general_btn {
+    display: block;
+    margin: auto;
+    width: 40%;
+    margin-top: 1.5rem;
+    color: primary;
+}

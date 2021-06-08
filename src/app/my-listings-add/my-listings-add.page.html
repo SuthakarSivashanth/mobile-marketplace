@@ -1,9 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>my-listings-add</ion-title>
-  </ion-toolbar>
+  <ion-navbar>
+    <ion-button ion-button icon-only (click)="back()" fill="clear" class="backBtn">
+      <ion-icon name="arrow-back-outline" ></ion-icon>
+    </ion-button>
+    <ion-title>
+      My-listing-add
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <div class="main_content_div">
+    <!-- <div class="tymbookerThumb" [ngStyle]="{'background-image': 'url(' + photo + ')'}">
+    </div>
+    <ion-button expand="block" (click)="openActionsheet()" fill="clear" size="small">
+    
+     Upload Your Image Here....
+    </ion-button>
+    <div *ngIf="percentage | async as pct">
+      Progress: {{ pct | number }}%
+      <ion-progress-bar value="{{ pct / 100 }}"></ion-progress-bar>
+    </div> -->
+    
+    <ion-item class="imgHolder" lines="full">
+      <ion-icon slot="start" name="image"></ion-icon>
+      <ion-label>Avator</ion-label>
+      <ion-input class="hidden" slot="end" type="file" accept="image/png, image/jpeg" (change)="uploadImage($event)"></ion-input>
+      <ion-button class="general_btn" slot="end" (click)="updateProfileImg()">Upload</ion-button>
+    </ion-item>
 
+
+      <div class="div_form">
+        <form [formGroup]="listing_form">    
+          <ion-input type="text"  formControlName="title" placeholder="Title"></ion-input>
+          <ion-textarea rows="6" formControlName="description"  placeholder="Description"></ion-textarea>
+          <ion-input type="text"  formControlName="price" placeholder="Price"></ion-input>
+          <ion-button (click)="onClickSave()"  expand="block">
+            Save
+          </ion-button>
+      </form>
+      </div>
+  </div>
 </ion-content>
